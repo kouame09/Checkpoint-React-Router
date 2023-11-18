@@ -1,31 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const FilmCard = ({ title, description, posterURL, category, trailerURL }) => {
-  const [showTrailer, setShowTrailer] = useState(false);
-
-  const handleToggleTrailer = () => {
-    setShowTrailer(!showTrailer);
-  };
-
+const FilmCard = ({ id, title, description, posterURL, category }) => {
   return (
-    <div className="film-card" onClick={handleToggleTrailer}>
-      <img src={posterURL} alt={title} />
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <p>Catégorie: {category}</p>
-      {showTrailer && (
-        <div className="trailer">
-          <iframe
-            title={title}
-            width="560"
-            height="315"
-            src={trailerURL}
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
-        </div>
-      )}
-    </div>
+    <Link to={`/film/${id}`}>
+      <div className="film-card">
+        <img src={posterURL} alt={title} />
+        <h2>{title}</h2>
+        <p>Catégorie: {category}</p>
+      </div>
+    </Link>
   );
 };
 

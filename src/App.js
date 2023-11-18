@@ -3,7 +3,7 @@ import './App.css';
 import FilmList from './Components/FilmList';
 import FilmFilter from './Components/FilmFilter';
 import FilmAdd from './Components/FilmAdd';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import FilmDescription from './Components/FilmDescription';
 import NotFound from './Components/NotFound';
 
@@ -33,7 +33,7 @@ function App() {
 
   const filterByCategory = (category) => {
     if (category === '') {
-      setFilteredFilms(films); // Afficher tous les films lorsque la catégorie est vide
+      setFilteredFilms(films);
     } else {
       const filtered = films.filter(
         (film) => film.category.toLowerCase() === category.toLowerCase()
@@ -57,23 +57,27 @@ function App() {
             </li>
           </ul>
         </nav>
-        <Switch>
-          <Route exact path="/">
-            <FilmAdd onAddFilm={addFilm} />
-            <FilmFilter
-              onTitleFilter={filterByTitle}
-              onCategoryFilter={filterByCategory}
-              onResetFilters={resetFilters}
-            />
-            <FilmList films={filteredFilms} />
-          </Route>
-          <Route path="/film/:id">
-            <FilmDescription />
-          </Route>
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <FilmAdd onAddFilm={addFilm} />
+                <FilmFilter
+                  onTitleFilter={filterByTitle}
+                  onCategoryFilter={filterByCategory}
+                  onResetFilters={resetFilters}
+                />
+                <FilmList films={filteredFilms} />
+              </>
+            }
+          />
+          <Route
+            path="/film/:id"
+            element={<FilmDescription films={films} />} // Envoyez les films au composant FilmDescription
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </div>
     </Router>
   );
