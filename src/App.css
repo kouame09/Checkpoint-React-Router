@@ -24,49 +24,58 @@ h1 {
   color: #fff;
 }
 
-/* Style pour le formulaire d'ajout de film */
-.film-add {
+/* Style pour le formulaire d'ajout de engin */
+/* Formulaire EnginAdd */
+.engin-add {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 40px;
+  flex-direction: column;
+  max-width: 400px; /* ajustez la largeur maximale du formulaire selon vos besoins */
+  margin: 0 auto;
 }
 
-.film-add input,
-.film-add select,
-.film-add button {
+.engin-add input[type="text"],
+.engin-add select {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc; /* couleur de la bordure */
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.engin-add input[type="text"]::placeholder {
+  color: #999; /* couleur du texte de l'indicateur de saisie */
+}
+
+.engin-add select {
+  background-color: #fff; /* couleur de fond */
+  color: #333; /* couleur du texte */
+}
+
+.engin-add button {
   padding: 10px 20px;
-  font-size: 1rem;
-  margin: 5px;
+  background-color: #007bff; /* couleur de fond du bouton */
+  color: #fff; /* couleur du texte du bouton */
   border: none;
-  border-radius: 4px;
-}
-
-.film-add input[type='text'],
-.film-add select {
-  width: 300px;
-}
-
-.film-add button {
-  background-color: #e50914;
-  color: #fff;
+  border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
 }
 
-.film-add button:hover {
-  background-color: #ff0000;
+.engin-add button:hover {
+  background-color: #0056b3; /* couleur de fond du bouton lorsqu'il est survolé */
 }
+
 
 /* Style pour la section de filtrage */
-.film-filter {
+.engin-filter {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
 }
 
-.film-filter input[type='text'],
-.film-filter select {
+.engin-filter input[type='text'],
+.engin-filter select {
   padding: 10px;
   font-size: 1rem;
   border: none;
@@ -74,15 +83,15 @@ h1 {
   outline: none;
 }
 
-/* Style pour la liste de films */
-.film-list {
+/* Style pour la liste de engins */
+.engin-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 20px;
 }
 
-/* Style pour la carte de film individuel */
-.film-card {
+/* Style pour la carte de engin individuel */
+.engin-card {
   background-color: #333;
   padding: 10px;
   border-radius: 8px;
@@ -91,30 +100,30 @@ h1 {
   cursor: pointer;
 }
 
-.film-card:hover {
+.engin-card:hover {
   transform: scale(1.05);
 }
 
-.film-card img {
+.engin-card img {
   width: 100%;
   border-radius: 8px;
   margin-bottom: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.film-card h2 {
+.engin-card h2 {
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
-.film-card p {
+.engin-card p {
   font-size: 1rem;
   color: #ccc;
   margin-bottom: 8px;
 }
 
-/* Style pour la description du film */
-.film-description {
+/* Style pour la description du engin */
+.engin-description {
   padding: 20px;
   background-color: #333;
   border-radius: 8px;
@@ -124,29 +133,92 @@ h1 {
   max-width: 800px;
 }
 
-.film-description h2 {
+.engin-description h2 {
   font-size: 2rem;
   margin-bottom: 20px;
 }
 
-.film-description p {
+.engin-description p {
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 10px;
 }
 
-.film-description .trailer {
+.engin-description .trailer {
   position: relative;
   overflow: hidden;
   width: 100%;
   padding-top: 56.25%; /* Aspect ratio 16:9 */
 }
 
-.film-description iframe {
+.engin-description iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   border: none;
+}
+
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #5154d5; /* couleur de fond de la barre de navigation */
+  padding: 22px 30px;
+  color: #fff; /* couleur du texte */
+  border-radius: 100px;
+}
+
+/* Logo */
+.logo {
+  width: 50px; /* ajustez la taille du logo selon vos besoins */
+  height: auto;
+}
+
+/* Liens de navigation */
+.nav-links {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  display: inline-block;
+  margin-left: 20px; /* ajustez l'espacement entre les éléments de la barre de navigation */
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff; /* couleur du texte des liens */
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333; /* couleur de fond du menu déroulant */
+  min-width: 100px; /* ajustez la largeur du menu déroulant selon vos besoins */
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px;
+  color: #fff; /* couleur du texte des éléments du menu déroulant */
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background-color: #555; /* couleur de fond des éléments du menu déroulant lorsqu'ils sont survolés */
 }

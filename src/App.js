@@ -1,80 +1,75 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import FilmList from './Components/FilmList';
-import FilmFilter from './Components/FilmFilter';
-import FilmAdd from './Components/FilmAdd';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import FilmDescription from './Components/FilmDescription';
-import NotFound from './Components/NotFound';
+import EnginList from './Components/engin/EnginList';
+import EnginFilter from './Components/engin/EnginFilter';
+import EnginAdd from './Components/engin/EnginAdd';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import EnginDescription from './Components/engin/EnginDescription';
+import NotFound from './Components/engin/NotFound';
+import NavBar from './Components/NavBar';
 
 function App() {
-  const initialFilms = [
-    // Liste de films initiale...
+  const initialEngins = [
+    // Liste de engins initiale...
   ];
 
-  const [films, setFilms] = useState(initialFilms);
-  const [filteredFilms, setFilteredFilms] = useState(initialFilms);
+  const [engins, setEngins] = useState(initialEngins);
+  const [filteredEngins, setFilteredEngins] = useState(initialEngins);
 
   useEffect(() => {
-    setFilteredFilms(films);
-  }, [films]);
+    setFilteredEngins(engins);
+  }, [engins]);
 
-  const addFilm = (newFilm) => {
-    setFilms([...films, newFilm]);
-    setFilteredFilms([...films, newFilm]);
+  const addEngin = (newEngin) => {
+    setEngins([...engins, newEngin]);
+    setFilteredEngins([...engins, newEngin]);
   };
 
   const filterByTitle = (title) => {
-    const filtered = films.filter((film) =>
-      film.title.toLowerCase().includes(title.toLowerCase())
+    const filtered = engins.filter((engin) =>
+      engin.title.toLowerCase().includes(title.toLowerCase())
     );
-    setFilteredFilms(filtered);
+    setFilteredEngins(filtered);
   };
 
   const filterByCategory = (category) => {
     if (category === '') {
-      setFilteredFilms(films);
+      setFilteredEngins(engins);
     } else {
-      const filtered = films.filter(
-        (film) => film.category.toLowerCase() === category.toLowerCase()
+      const filtered = engins.filter(
+        (engin) => engin.category.toLowerCase() === category.toLowerCase()
       );
-      setFilteredFilms(filtered);
+      setFilteredEngins(filtered);
     }
   };
 
   const resetFilters = () => {
-    setFilteredFilms(films);
+    setFilteredEngins(engins);
   };
 
   return (
     <Router>
       <div className="App">
-        <h1>IvoireFlix</h1>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Accueil</Link>
-            </li>
-          </ul>
-        </nav>
+        <NavBar />
+        <h1>Gestion de Packing</h1>
         <Routes>
           <Route
             path="/"
             element={
               <>
-                <FilmAdd onAddFilm={addFilm} />
-                <FilmFilter
+                <EnginAdd onAddengin={addEngin} />
+                <EnginFilter
                   onTitleFilter={filterByTitle}
                   onCategoryFilter={filterByCategory}
                   onResetFilters={resetFilters}
                 />
-                <FilmList films={filteredFilms} />
+                <EnginList engins={filteredEngins} />
               </>
             }
           />
           <Route
-            path="/film/:id"
-            element={<FilmDescription films={films} />} // Envoyez les films au composant FilmDescription
+            path="/engin/:id"
+            element={<EnginDescription engins={engins} />} 
           />
           <Route path="*" element={<NotFound />} />
         </Routes>
